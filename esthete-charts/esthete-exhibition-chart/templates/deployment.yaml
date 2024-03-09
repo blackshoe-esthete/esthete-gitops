@@ -1,0 +1,24 @@
+# esthete-deployment-chart/templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exhibition-service
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: exhibition-service
+  template:
+    metadata:
+      labels:
+        app: exhibition-service
+    spec:
+      containers:
+        - name: esthete-exhibition-chart
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          envFrom:
+            - configMapRef:
+                name: exhibition-service-config

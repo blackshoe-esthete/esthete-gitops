@@ -1,0 +1,22 @@
+
+# Default values for esthete-discovery-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# esthete-deployment-chart/values.yaml
+
+replicaCount: 1
+
+image:
+  repository: jaehui327/esthete-discovery-service
+  tag: "1.0"
+
+containerPort: 8010
+
+ingress:
+  enabled: true
+
+controller:
+  ## Argo controller commandline flags
+  args:
+    appResyncPeriod: "60"
